@@ -22,13 +22,12 @@ public class DashboardFragment extends Fragment {
     View vista;
 
     RecyclerView recyclerView;
-    MainAdapterHorario mainAdapter;
+    MainAdapterSchedule mainAdapter;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         recyclerView = vista.findViewById(R.id.listDispen);
@@ -44,7 +43,7 @@ public class DashboardFragment extends Fragment {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("dispensador").child(user.getUid()), ModelDispensador.class)
                         .build();
 
-        mainAdapter = new MainAdapterHorario(options);
+        mainAdapter = new MainAdapterSchedule(options);
         recyclerView.setAdapter(mainAdapter);
 
         return vista;

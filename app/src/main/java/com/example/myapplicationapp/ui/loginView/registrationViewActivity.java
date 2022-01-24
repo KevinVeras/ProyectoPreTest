@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,7 +14,6 @@ import com.example.myapplicationapp.R;
 import com.example.myapplicationapp.ui.dispensador.ModelDispensador;
 import com.example.myapplicationapp.ui.models.userModel;
 import com.example.myapplicationapp.ui.utilities.validations;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,9 +22,13 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
-public class logUpViewActivity extends AppCompatActivity {
+public class registrationViewActivity extends AppCompatActivity {
 
-    private TextInputLayout name_input_app, email_input_app, password_input_app, password_validate_input_app;
+    TextInputLayout nameInputApp;
+    TextInputLayout emailInputApp;
+    TextInputLayout passwordInputApp;
+    TextInputLayout passwordValidateInputApp;
+
     private validations mValidations;
     private FirebaseAuth mAuth;
     private DatabaseReference mReference;
@@ -44,33 +48,33 @@ public class logUpViewActivity extends AppCompatActivity {
 
         mValidations = new validations(this);
 
-        name_input_app = findViewById(R.id.name_input_app);
-        email_input_app = findViewById(R.id.email_input_app);
-        password_input_app = findViewById(R.id.password_input_app);
-        password_validate_input_app = findViewById(R.id.password_validate_input_app);
+        nameInputApp = findViewById(R.id.name_input_app);
+        emailInputApp = findViewById(R.id.email_input_app);
+        passwordInputApp = findViewById(R.id.password_input_app);
+        passwordValidateInputApp = findViewById(R.id.password_validate_input_app);
 
 
-        Button registration_id = findViewById(R.id.registration_id);
-        registration_id.setOnClickListener(v -> Registration());
+        Button registrationId = findViewById(R.id.registration_id);
+        registrationId.setOnClickListener(v -> registration());
 
     }
 
-    private void Registration() {
-        if (!mValidations.validateEmailPassword(name_input_app) | !mValidations.validateEmailPassword(email_input_app)
-                | !mValidations.validateEmailPassword(password_input_app) | !mValidations.validateEmailPassword(password_validate_input_app)) {
+    private void registration() {
+        if (!mValidations.validateEmailPassword(nameInputApp) || !mValidations.validateEmailPassword(emailInputApp)
+                || !mValidations.validateEmailPassword(passwordInputApp) || !mValidations.validateEmailPassword(passwordValidateInputApp)) {
             return;
         }
-        if (!mValidations.validateEmail(email_input_app)) {
-            return;
-        }
-
-        if (!mValidations.validate_passwords(password_input_app, password_validate_input_app)) {
+        if (!mValidations.validateEmail(emailInputApp)) {
             return;
         }
 
-        String email = Objects.requireNonNull(email_input_app.getEditText()).getText().toString().trim();
-        String password = Objects.requireNonNull(password_input_app.getEditText()).getText().toString().trim();
-        String fullNa = Objects.requireNonNull(name_input_app.getEditText()).getText().toString();
+        if (!mValidations.validate_passwords(passwordInputApp, passwordValidateInputApp)) {
+            return;
+        }
+
+        String email = Objects.requireNonNull(emailInputApp.getEditText()).getText().toString().trim();
+        String password = Objects.requireNonNull(passwordInputApp.getEditText()).getText().toString().trim();
+        String fullNa = Objects.requireNonNull(nameInputApp.getEditText()).getText().toString();
 
         mDialog.setMessage("Registrando...");
         mDialog.setCancelable(false);
@@ -101,7 +105,7 @@ public class logUpViewActivity extends AppCompatActivity {
 
                             mReferenceDis.child(user.getUid()).push().setValue(dispensador).addOnSuccessListener(unused1 -> {
                                 mDialog.dismiss();
-                                Intent intent = new Intent(getApplicationContext(), logInViewActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), entryViewActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                             });
@@ -109,12 +113,12 @@ public class logUpViewActivity extends AppCompatActivity {
                         });
                     } else {
                         mDialog.dismiss();
-                        Mail_registered();
+                        mailRegistered();
                     }
                 });
     }
 
-    public void Mail_registered() {
+    public void mailRegistered() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
@@ -124,7 +128,7 @@ public class logUpViewActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.setCancelable(false);
         alertDialog.show();
-        Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         positiveButton.setTextColor(Color.parseColor("#FF000000"));
 
     }

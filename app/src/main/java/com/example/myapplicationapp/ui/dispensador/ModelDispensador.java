@@ -2,87 +2,81 @@ package com.example.myapplicationapp.ui.dispensador;
 
 public class ModelDispensador {
 
-    String Horario1,Horario2,Horario3,Horario4;
-    String CantidadAgua,CantidadComida;
-    String Automatico,Programable;
+    String horario1;
+    String horario2;
+    String horario3;
+    String horario4;
+    String cantidadAgua;
+    String cantidadComida;
+    String automatico;
+    String programable;
 
     public ModelDispensador() {
+        //builder required
     }
 
-    public ModelDispensador(String horario1, String horario2, String horario3,
-                            String horario4, String cantidadAgua, String cantidadComida,
-                            String automatico, String programable) {
-        Horario1 = horario1;
-        Horario2 = horario2;
-        Horario3 = horario3;
-        Horario4 = horario4;
-        CantidadAgua = cantidadAgua;
-        CantidadComida = cantidadComida;
-        Automatico = automatico;
-        Programable = programable;
-    }
 
     public String getHorario1() {
-        return Horario1;
+        return horario1;
     }
 
     public void setHorario1(String horario1) {
-        Horario1 = horario1;
+        this.horario1 = horario1;
     }
 
     public String getHorario2() {
-        return Horario2;
+        return horario2;
     }
 
     public void setHorario2(String horario2) {
-        Horario2 = horario2;
+        this.horario2 = horario2;
     }
 
     public String getHorario3() {
-        return Horario3;
+        return horario3;
     }
 
     public void setHorario3(String horario3) {
-        Horario3 = horario3;
+        this.horario3 = horario3;
     }
 
     public String getHorario4() {
-        return Horario4;
+        return horario4;
     }
 
     public void setHorario4(String horario4) {
-        Horario4 = horario4;
+        this.horario4 = horario4;
     }
 
     public String getCantidadAgua() {
-        return CantidadAgua;
+        return cantidadAgua;
     }
 
     public void setCantidadAgua(String cantidadAgua) {
-        CantidadAgua = cantidadAgua;
+        this.cantidadAgua = cantidadAgua;
     }
 
     public String getCantidadComida() {
-        return CantidadComida;
+        return cantidadComida;
     }
 
     public void setCantidadComida(String cantidadComida) {
-        CantidadComida = cantidadComida;
+        this.cantidadComida = cantidadComida;
     }
 
     public String getAutomatico() {
-        return Automatico;
+        return automatico;
     }
 
     public void setAutomatico(String automatico) {
-        Automatico = automatico;
+        this.automatico = automatico;
     }
 
     public String getProgramable() {
-        return Programable;
+        return programable;
     }
 
     public void setProgramable(String programable) {
-        Programable = programable;
+        this.programable = programable;
     }
 }

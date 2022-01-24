@@ -3,13 +3,9 @@ package com.example.myapplicationapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
-import com.example.myapplicationapp.ui.loginView.logInViewActivity;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.myapplicationapp.ui.loginView.entryViewActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -72,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_setting:
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(this, logInViewActivity.class);
+                Intent intent = new Intent(this, entryViewActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 return true;

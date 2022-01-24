@@ -63,21 +63,21 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:19.0.1'
 
 }
-apply plugin:'com.google.gms.google-services'
-apply plugin:'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.android.application'
 apply plugin: 'org.sonarqube'
 sonarqube {
-    properties{
-        property"sonar.projectName","HappyPetAppPc1"
-        property"sonar.projectKey","HappyPetAppPc1"
-        property "sonar.projectVersion", "2.0"
-        property"sonar.host.url","localhost:9000"
-        property"sonar.languaje","java"
-        property"sonar.sources","src/main/java"
-        property"sonar.java.source","src/main/java"
-        property"sonar.sources","src/main/java"
-        property"sonar.login","admin"
-        property"sonar.password","kevinvera"
+    properties {
+        property "sonar.projectName", "HappyPetAppPc1"
+        property "sonar.projectKey", "HappyPetAppPc1"
+        property "sonar.projectVersion", "21.0"
+        property "sonar.host.url", "localhost:9000"
+        property "sonar.languaje", "java"
+        property "sonar.sources", "src/main/java"
+        property "sonar.java.source", "src/main/java"
+        property "sonar.sources", "src/main/java"
+        property "sonar.login", "admin"
+        property "sonar.password", "kevinvera"
     }
 }
 
